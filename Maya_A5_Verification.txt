@@ -1,0 +1,44 @@
+A5 TEAM 4 — MAYA PHYSICAL ACTIVITY, SYNTHETIC GENERATION AUDIT
+Input: 40 REAL tracking-day rows. Output: 750 SYNTHETIC simulated rows. Seed: 42.
+Synthetic data MUST NOT be represented as observed real activity.
+Method: joint empirical resampling of predictors; continuous jitter; OLS A3 model with centered X1 and X2 and product; resampled observed residuals; physical step-count floor.
+Uncertainty: 40-day source, correlated days, source-specific behaviors; preserves patterns approximately, not independent real evidence.
+
+ORIGINAL A3 COEFFICIENTS / SYNTHETIC REFIT
+const     : original  9114.799705, synthetic  8734.275623
+M         : original     3.567677, synthetic     3.479081
+H         : original   -47.059305, synthetic   -97.165843
+MH        : original    -0.380281, synthetic    -0.365968
+Weekend   : original -1836.781069, synthetic -1369.603840
+Campus    : original -2654.943425, synthetic -2196.642471
+Rain      : original   -41.409725, synthetic   -28.633521
+
+MEAN AND SAMPLE SD (ddof=1)
+Daily_Steps: original mean=5898.8000, SD=5582.3525; synthetic mean=5690.9493, SD=5215.2048
+Steps_Before_Noon: original mean=1373.7000, SD=1708.0062; synthetic mean=1256.3387, SD=1637.1533
+Scheduled_School_Work_Hours: original mean=4.0250, SD=3.5823; synthetic mean=3.7123, SD=3.5614
+Weekend: original mean=0.2750, SD=0.4522; synthetic mean=0.3080, SD=0.4620
+Scheduled_Campus_Work_Day: original mean=0.5750, SD=0.5006; synthetic mean=0.5227, SD=0.4998
+Rain_Before_Noon_mm: original mean=2.1975, SD=7.8157; synthetic mean=1.9790, SD=7.5273
+
+PEARSON CORRELATIONS: ORIGINAL then SYNTHETIC
+                             Daily_Steps  Steps_Before_Noon  Scheduled_School_Work_Hours  Weekend  Scheduled_Campus_Work_Day  Rain_Before_Noon_mm
+Daily_Steps                       1.0000             0.7863                       0.4155  -0.4514                     0.5004              -0.2057
+Steps_Before_Noon                 0.7863             1.0000                       0.4819  -0.3878                     0.5425              -0.1417
+Scheduled_School_Work_Hours       0.4155             0.4819                       1.0000  -0.7008                     0.8925              -0.1406
+Weekend                          -0.4514            -0.3878                      -0.7008   1.0000                    -0.7164               0.1990
+Scheduled_Campus_Work_Day         0.5004             0.5425                       0.8925  -0.7164                     1.0000              -0.0940
+Rain_Before_Noon_mm              -0.2057            -0.1417                      -0.1406   0.1990                    -0.0940               1.0000
+
+                             Daily_Steps  Steps_Before_Noon  Scheduled_School_Work_Hours  Weekend  Scheduled_Campus_Work_Day  Rain_Before_Noon_mm
+Daily_Steps                       1.0000             0.7875                       0.3909  -0.4026                     0.4740              -0.1806
+Steps_Before_Noon                 0.7875             1.0000                       0.4812  -0.3709                     0.5397              -0.1365
+Scheduled_School_Work_Hours       0.3909             0.4812                       1.0000  -0.6959                     0.9033              -0.1379
+Weekend                          -0.4026            -0.3709                      -0.6959   1.0000                    -0.6981               0.2092
+Scheduled_Campus_Work_Day         0.4740             0.5397                       0.9033  -0.6981                     1.0000              -0.1051
+Rain_Before_Noon_mm              -0.1806            -0.1365                      -0.1379   0.2092                    -0.1051               1.0000
+
+Original: min daily=19, max daily=21819; synthetic: min daily=0, max daily=26424
+Physical validity: all daily >= noon: True; no negative counts: True
+All synthetic markers: True
+Note: Any reused source-like combinations and simulated noise are NOT new observed evidence; p-values on synthetic data are not confirmations of the original real-world effect.
